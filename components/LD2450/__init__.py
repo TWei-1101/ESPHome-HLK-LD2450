@@ -369,7 +369,8 @@ CONFIG_SCHEMA = cv.All(
             ),
             cv.Optional(CONF_MAX_DISTANCE): cv.Any(
                 cv.All(cv.distance, cv.Range(min=0.0, max=6.0)),
-                number.NUMBER_SCHEMA.extend(
+                # === 修正后的代码段 (第 372 行左右) ===
+                number.number_schema(MaxDistanceNumber).extend(
                     {
                         cv.GenerateID(): cv.declare_id(MaxDistanceNumber),
                         cv.Required(CONF_NAME): cv.string_strict,
@@ -388,7 +389,8 @@ CONFIG_SCHEMA = cv.All(
             ),
             cv.Optional(CONF_MAX_TILT_ANGLE): cv.Any(
                 cv.All(cv.angle, cv.Range(min=-90.0, max=90.0)),
-                number.NUMBER_SCHEMA.extend(
+                # === 修正后的代码段 (第 404 行左右) ===
+                number.number_schema(MaxTiltAngleNumber).extend(
                     {
                         cv.GenerateID(): cv.declare_id(MaxTiltAngleNumber),
                         cv.Required(CONF_NAME): cv.string_strict,
@@ -409,7 +411,8 @@ CONFIG_SCHEMA = cv.All(
             ),
             cv.Optional(CONF_MIN_TILT_ANGLE): cv.Any(
                 cv.All(cv.angle, cv.Range(min=-90.0, max=90.0)),
-                number.NUMBER_SCHEMA.extend(
+                # === 修正后的代码段 (第 433 行左右) ===
+                number.number_schema(MinTiltAngleNumber).extend(
                     {
                         cv.GenerateID(): cv.declare_id(MinTiltAngleNumber),
                         cv.Required(CONF_NAME): cv.string_strict,
