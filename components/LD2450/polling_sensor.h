@@ -15,11 +15,12 @@ namespace esphome::ld2450
         void setup() override
         {
             // Determine unit conversion
-            if (unit_of_measurement_ != nullptr)
+            auto uom = get_unit_of_measurement();
+            if (!uom.empty())
             {
-                if (strcmp(unit_of_measurement_, "m") == 0)
+                if (uom == "m")
                     conversion_factor_ = 0.001f;
-                else if ((strcmp(unit_of_measurement_, "cm") == 0))
+                else if (uom == "cm")
                     conversion_factor_ = 0.1f;
             }
         }
