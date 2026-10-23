@@ -15,7 +15,7 @@ namespace esphome::ld2450
         void setup() override
         {
             // Determine unit conversion
-            auto uom = get_unit_of_measurement();
+            auto uom = get_unit_of_measurement_ref();
             if (!uom.empty())
             {
                 if (uom == "m")
@@ -27,8 +27,11 @@ namespace esphome::ld2450
 
         void update() override
         {
-            if (raw_state != value_ && !(std::isnan(raw_state) && std::isnan(value_)))
+            if (!has_state() ||
+                (state != value_ &&
+                 !(std::isnan(state) && std::isnan(value_)))) {
                 publish_state(value_);
+            }
         }
 
         /**
